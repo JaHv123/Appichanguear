@@ -46,8 +46,10 @@ public class LoginActivity extends AppCompatActivity {
                 
                 if (!email.isEmpty() && !password.isEmpty()){
                     LoginUser();
+
                 }else {
                     Toast.makeText(LoginActivity.this, "Complete los campos", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                    startActivity(new Intent(LoginActivity.this, PrincipalActivity.class));
                     finish();
                 }else{
                     Toast.makeText(LoginActivity.this, "No se puede iniciar sesion, compruebe los datos", Toast.LENGTH_SHORT).show();

@@ -1,14 +1,18 @@
-package com.example.appichanguearfinal;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.appichanguearfinal.ui.notifications;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.appichanguearfinal.LoginActivity;
+import com.example.appichanguearfinal.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,34 +20,40 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileActivity extends AppCompatActivity {
+public class NotificationsFragment extends Fragment {
 
     Button mButtonSignout;
     TextView mTextViewName, mTextViewEmail;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+    Fragment me = this;
 
+    View mView;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        mView = inflater.inflate(R.layout.activity_profile, container, false);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mButtonSignout = findViewById(R.id.btnSingOut);
-        mTextViewName = findViewById(R.id.txtViewName);
-        mTextViewEmail = findViewById(R.id.txtViewEmail);
+        mButtonSignout = mView.findViewById(R.id.btnSingOut);
+        mTextViewName =  mView.findViewById(R.id.txtViewName);
+        mTextViewEmail =  mView.findViewById(R.id.txtViewEmail);
         mButtonSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                finish();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+
             }
         });
+         onStop();
 
         getUserInfo();
+
+        return mView;
     }
 
     private void getUserInfo(){

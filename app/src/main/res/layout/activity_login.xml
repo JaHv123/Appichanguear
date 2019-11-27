@@ -7,35 +7,86 @@
     android:padding="20dp"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/edtEmailLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Email" />
-    <EditText
-        android:id="@+id/edtPasswordLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnLogin"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INICIAR SESION"
-            android:background="@color/colorAccent"
-            android:textColor="@android:color/white"/>
+            android:layout_marginTop="35dp"
+            android:src="@drawable/logofinal" />
+
+        <EditText
+            android:id="@+id/edtEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Email" />
+        <EditText
+            android:id="@+id/edtPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Password" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="INICIAR SESION"
+                android:layout_gravity="bottom"
+                android:background="@color/colorAccent"
+                android:textColor="@android:color/white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="No es miembro?"
+                    android:textColor="#4C4B4A"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="register"
+                    android:padding="3dp"
+                    android:text="Regístrate"
+                    android:textColor="#3D7761"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
+
+
 
 
 </LinearLayout>

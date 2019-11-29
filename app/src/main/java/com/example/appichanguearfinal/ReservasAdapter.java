@@ -2,22 +2,27 @@ package com.example.appichanguearfinal;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.appichanguearfinal.ui.dashboard.DashboardFragment;
 
 import java.util.ArrayList;
 
 public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ReservasVIewHolder>{
 
     private ArrayList<ItemReserva> itemReservas;
+    private DashboardFragment dashboardFragment = new DashboardFragment();
+
 
     public static class ReservasVIewHolder extends RecyclerView.ViewHolder{
 
@@ -70,6 +75,13 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
                     public void onClick(DialogInterface dialog, int which) {
                         if(holder.mTextView3.getText().equals("Disponible")){
                             holder.mTextView3.setText("Reservado");
+                            holder.btnConfirReserva.setEnabled(false);
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Nombre", holder.mTextVIew2.getText().toString());
+
+                            dashboardFragment.setArguments(bundle);
+
                         }else{
                             holder.mTextView3.setText("Disponible");
                         }

@@ -1,9 +1,11 @@
 package com.example.appichanguearfinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class ExampleBottomSheetDailog extends BottomSheetDialogFragment {
 
     TextView campNombre, campPrecio, campDireccion, campDistancia, campHorario, campTelefono;
+    Button btnReserva;
 
 
     @Nullable
@@ -28,6 +31,14 @@ public class ExampleBottomSheetDailog extends BottomSheetDialogFragment {
         campDistancia = view.findViewById(R.id.txtDistanciaCampo);
         campHorario = view.findViewById(R.id.txtHorarioCampo);
         campTelefono = view.findViewById(R.id.txtTelefonoCampo);
+        btnReserva = view.findViewById(R.id.btnReserva);
+
+        btnReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),ReservaActivity.class));
+            }
+        });
 
         onStop();
 

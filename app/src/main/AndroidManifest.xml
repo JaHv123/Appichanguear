@@ -18,20 +18,18 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC0TEG6MH41N4-gOkDFZHZ54GsrTQq80aA" />
+
         <activity
             android:name=".PrincipalActivity"
-            android:label="@string/title_activity_principal"></activity>
-        <activity android:name=".LoginActivity" >
+            android:label="@string/title_activity_principal" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

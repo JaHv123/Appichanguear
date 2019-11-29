@@ -3,22 +3,21 @@ package com.example.appichanguearfinal.ui.home;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.example.appichanguearfinal.CampoDetail;
+import com.example.appichanguearfinal.ExampleBottomSheetDailog;
 import com.example.appichanguearfinal.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
@@ -36,6 +36,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
+
+    TextView campNombre, campPrecio, campDireccion, campDistancia, campHorario, campTelefono;
+
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -48,10 +52,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
        // mapFragment.getMapAsync(this);
         mView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        campNombre = mView.findViewById(R.id.txtNombreCampo);
+        campPrecio = mView.findViewById(R.id.txtPrecioCampo);
+        campDireccion = mView.findViewById(R.id.txtDireccionCampo);
+        campDistancia = mView.findViewById(R.id.txtDistanciaCampo);
+        campHorario = mView.findViewById(R.id.txtHorarioCampo);
+        campTelefono = mView.findViewById(R.id.txtTelefonoCampo);
 
         return mView;
     }
-
 
 
     @Override
@@ -67,9 +76,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap =googleMap;
+
 
         // Controles UI
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -93,21 +105,49 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // Marcadores
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
 
-        LatLng campingUrrelo = new LatLng(-7.1522501,-78.5090717);
-        googleMap.addMarker(new MarkerOptions().position(campingUrrelo).title("Camping de Urrelo")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(campingUrrelo));
 
+        LatLng campingUrrelo = new LatLng(-7.1522501,-78.5090717);
+        final CampoDetail campo = new CampoDetail();
+
+         mGoogleMap.addMarker(new MarkerOptions().position(campingUrrelo).title(campo.Nombre = "Camping Urrelo")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(campingUrrelo));
 
         LatLng allianzArena = new LatLng(-7.1530808,-78.5082074);
-        googleMap.addMarker(new MarkerOptions().position(allianzArena).title("Allianz Arena")
+        mGoogleMap.addMarker(new MarkerOptions().position(allianzArena).title(campo.Nombre = "Allianz Arena")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(allianzArena));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(allianzArena));
 
+
+        switch (campo.Nombre){
+            case "Camping de Urrelo":
+                mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        ExampleBottomSheetDailog bottomSheetDailog = new ExampleBottomSheetDailog();
+                        bottomSheetDailog.show(getFragmentManager(),"exampleBootomSheet");
+                        return true;
+                    }
+                });
+                break;
+            case "Allianz Arena":
+                mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        ExampleBottomSheetDailog btnAllianz = new ExampleBottomSheetDailog();
+                        btnAllianz.show(getFragmentManager(),"exampleootomSheet");
+                        return true;
+                    }
+                });
+                break;
+
+            default:
+                Log.e("ERROR MARKER", "ERROR AL INGRESAR MARKER");
+                break;
+        }
 
         MapsInitializer.initialize(getContext());
         googleMap.setMapType((GoogleMap.MAP_TYPE_NORMAL));
-
 
     }
 

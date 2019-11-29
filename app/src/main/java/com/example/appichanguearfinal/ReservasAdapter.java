@@ -98,6 +98,11 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
                 alertDialog.show();
             }
         });
+
+        if(holder.mTextView3.getText().equals("Reservado")){
+            holder.btnConfirReserva.setEnabled(false);
+
+        }
     }
 
     @Override

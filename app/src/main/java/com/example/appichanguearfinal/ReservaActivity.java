@@ -34,10 +34,10 @@ public class ReservaActivity extends AppCompatActivity {
         itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","15:00 - 16:00","Disponible"));
         itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","16:00 - 17:00","Disponible"));
         itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","17:00 - 18:00","Disponible"));
-        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","18:00 - 19:00","Disponible"));
+        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","18:00 - 19:00","Reservado"));
         itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","19:00 - 20:00","Disponible"));
-        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","20:00 - 21:00","Disponible"));
-        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","21:00 - 22:00","Disponible"));
+        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","20:00 - 21:00","Reservado"));
+        itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","21:00 - 22:00","Reservado"));
         itemReservas.add(new ItemReserva(R.drawable.ic_date, "Camping de Urrelo","22:00 - 23:00","Disponible"));
 
         mRecyclerView = findViewById(R.id.recyclerVIew);

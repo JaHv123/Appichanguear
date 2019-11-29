@@ -82,12 +82,8 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.Reserv
                     }
                 });
 
-
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
-
-
             }
         });
     }
